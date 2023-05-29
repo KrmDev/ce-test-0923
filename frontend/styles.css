@@ -1,0 +1,87 @@
+body {
+    background-color: rgba(0, 0, 0, 0.856);
+}
+
+@keyframes openPortal {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes jumpAndFall {
+    0% {
+      transform: translateY(0) rotate(0);
+    }
+    50% {
+      transform: translateY(-100px) rotate(180deg);
+    }
+    100% {
+      transform: translateY(200px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes closePortal {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    height: 100vh;
+  }
+  
+  .portal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: openPortal 0.5s linear forwards;
+  }
+  
+  .star-container {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .grey-star {
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .grey-star.clicked {
+    animation: jumpAndFall 2s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+  }
+  
+  .portal.clicked {
+    animation: closePortal 0.5s linear forwards;
+    animation-delay: 3s;
+  }
+  
+  
+
+.hidden {
+    display: none;
+}
+  
+  
