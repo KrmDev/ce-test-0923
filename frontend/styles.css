@@ -2,86 +2,108 @@ body {
     background-color: rgba(0, 0, 0, 0.856);
 }
 
-@keyframes openPortal {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes jumpAndFall {
-    0% {
-      transform: translateY(0) rotate(0);
-    }
-    50% {
-      transform: translateY(-100px) rotate(180deg);
-    }
-    100% {
-      transform: translateY(200px) rotate(360deg);
-      opacity: 0;
-    }
-  }
-  
-  @keyframes closePortal {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(0.8);
-      opacity: 0.5;
-    }
-    100% {
-      transform: scale(0);
-      opacity: 0;
-    }
-  }
-  
-  .container {
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column-reverse;
     height: 100vh;
-  }
+}
   
-  .portal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    animation: openPortal 0.5s linear forwards;
-  }
-  
-  .star-container {
-    display: flex;
-    align-items: flex-end;
-  }
-  
-  .grey-star {
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .grey-star.clicked {
-    animation: jumpAndFall 2s ease-in-out;
-    animation-fill-mode: forwards;
-    animation-delay: 1s;
-  }
-  
-  .portal.clicked {
-    animation: closePortal 0.5s linear forwards;
-    animation-delay: 3s;
-  }
-  
-  
-
 .hidden {
     display: none;
 }
+
+.portal {
+    animation: portal 2s forwards;
+    z-index: 1;
+}
+
+.star-container div {
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.animate {
+    animation: rotate 2s, bounce 2s, fade 2s;
+    animation-fill-mode: forwards;
+}
+.animateReverse {
+    animation: rotate 2s reverse, bounce 2s reverse, fade 2s reverse;
+    animation-fill-mode: forwards;
+}
+
+
+.portal.opening {
+    animation: portalOpen 2s forwards;
+}
+
+.portal.closing {
+    animation: portalClose 2s forwards;
+}
+
+.star-pointy, .star-rounded {
+    transition: transform 0.5s ease-in-out;
+}
+
+.star-pointy {
+    transform: scaleX(1);
+}
+
+.star-rounded {
+    transform: scaleX(0.5);
+}
+
+
+@keyframes jumpAndSpin {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(90deg); }
+    50% { transform: translateY(-40px) rotate(180deg); }
+    75% { transform: translateY(-20px) rotate(270deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+@keyframes jumpAndSpinReverse {
+    0% { transform: translateY(0) rotate(360deg); }
+    25% { transform: translateY(-20px) rotate(270deg); }
+    50% { transform: translateY(-40px) rotate(180deg); }
+    75% { transform: translateY(-20px) rotate(90deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes portal {
+    0% { height: 0px; }
+    100% { height: 86px; }
+}
+
+@keyframes portalReverse {
+    0% { height: 86px; }
+    100% { height: 0px; }
+}
+
+@keyframes portalOpen {
+    0% { transform: scaleY(0); }
+    100% { transform: scaleY(1); }
+}
+
+@keyframes portalClose {
+    0% { transform: scaleY(1); }
+    100% { transform: scaleY(0); }
+}
+
+@keyframes bounce {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(100px);}
+    100% {transform: translateY(-50px);}
+}
+
+@keyframes fade {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+
   
   
