@@ -6,33 +6,48 @@ const portal = document.querySelector(".portal");
 
 let state = 0;
 
-function animateStar(star, portal, isReverse = false) {
-    portal.classList.add('opening');
-
+function animateStar(star, isReverse = false) {
     star.classList.add('animate');
 
-    
     setTimeout(function() {
         star.classList.add(isReverse ? 'star-rounded' : 'star-pointy');
-    }, 1000);  
- 
-    
+    }, 1000);
+
     setTimeout(function() {
         star.classList.remove('animate', isReverse ? 'star-pointy' : 'star-rounded');
-
-        
-        portal.classList.remove('opening');
-        portal.classList.add('closing');
-
-        setTimeout(function() {
-            portal.classList.remove('closing');
-        }, 2000);
     }, 2000);
 }
 
 
 greyStar.addEventListener('click', function() {
-    animateStar(greyStar, portal);
+    animateStar(greyStar);
+
+    setTimeout(function() {
+        greyStar.classList.add('hidden');
+        greyStarRounded.classList.remove('hidden');
+        animateStar(greyStarRounded);
+    }, 2000);
+
+    setTimeout(function() {
+        portal.classList.add('open');
+    }, 4000);
+
+    setTimeout(function() {
+        greyStarRounded.classList.add('hidden');
+        yellowStarRounded.classList.remove('hidden');
+        animateStar(yellowStarRounded, true);
+    }, 6000);
+
+    setTimeout(function() {
+        yellowStarRounded.classList.add('hidden');
+        yellowStar.classList.remove('hidden');
+        animateStar(yellowStar);
+    }, 7000);
+
+    setTimeout(function() {
+        portal.classList.remove('open');
+        state = 1;
+    }, 8000);
 });
 
 yellowStar.addEventListener('click', function() {
